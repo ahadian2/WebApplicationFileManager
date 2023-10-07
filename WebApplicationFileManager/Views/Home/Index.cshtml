@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row main">
+    <div class="col-12">
+        <div class="content">
+
+            <button type="button" class="btn-save" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="StartFileManager('tehran_it', false, true, true);"> مازول تهران آی تی</button>
+
+            <div class="test1"></div>
+            <div class="test2"></div>
+
+        </div>
+    </div>
+</div>
+
+<div id="MyFileManager"></div>
+@section Style{
+    @*My Css Code*@
+}
+@section Script{
+    @*for hover Right navbar slider*@
+    <script>
+        $(document).ready(function () {
+            $('#dashboard').addClass('active');
+        });
+    </script>
+    <script src="~/Scripts/TIT-FileManager/FileManager.js"></script>
+}
+

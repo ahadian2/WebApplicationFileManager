@@ -1,0 +1,109 @@
+﻿@model WebApplicationFileManager.Models.Blog
+
+@{
+    ViewBag.Title = "Details";
+}
+@*header*@
+<div class="row MvcView-header">
+    <div class="col d-none d-sm-block">
+        <h2 class="MvcView-Title px-2">جزئیات ....</h2>
+    </div>
+    <div class="col-auto text-end">
+        @Html.ActionLink("بازگشت به لیست", "Index", null, new { @class = "btn-back" })
+    </div>
+</div>
+@*main*@
+<div class="MvcView-Details-Delete">
+
+    <div class="header-dd">
+        @Html.DisplayNameFor(model => model.PostTitle)
+    </div>
+    <div class="body-dd">
+        @Html.DisplayFor(model => model.PostTitle)
+    </div>
+    <div class="header-dd">
+        @Html.DisplayNameFor(model => model.PostContent)
+    </div>
+    <div class="body-dd">
+        @Html.Raw(Model.PostContent)
+    </div>
+
+    @if (Model.PostImage != null)
+    {
+        <div class="header-dd">
+            @Html.DisplayNameFor(model => model.PostImage)
+        </div>
+        <div class="body-dd">
+            <img src="@Model.PostImage" />
+        </div>
+    }
+
+
+
+    <div class="header-dd">
+        @Html.DisplayNameFor(model => model.PostGallery)
+    </div>
+    <div class="body-dd">
+
+        <input type="text" value="@Model.PostGallery" id="PostGallery" />
+        <div class="MyGallery"></div>
+
+
+    </div>
+    <div class="header-dd">
+        @Html.DisplayNameFor(model => model.PostCarousel)
+    </div>
+    <div class="body-dd">
+        @Html.DisplayFor(model => model.PostCarousel)
+    </div>
+
+
+</div>
+<p class="text-center mt-3">
+    @Html.ActionLink("ویرایش", "Edit", new { id = Model.PostID }, new { @class = "btn-save" })
+</p>
+@section Style{
+    @*My Css Code*@
+    <link href="~/Scripts/simplelightbox-master/dist/simple-lightbox.min.css" rel="stylesheet" />
+}
+@section Script{
+    <script src="~/Scripts/simplelightbox-master/dist/simple-lightbox.jquery.min.js"></script>
+
+    <script>
+    @*for hover Right navbar slider *@
+        $(document).ready(function () {
+
+            var gallery = $('.gallery a').simpleLightbox({
+                /* options */
+            });
+
+            $('#dashboard').addClass('active');
+
+            var x = $('#PostGallery').val();
+            if (x != '') {
+                var jsonArray = $.parseJSON(x);
+                var MyRow = '';
+                $.each(jsonArray, function (key, value) {
+                    $.each(value, function (key1, val) {
+                        MyRow += '\
+                            <div><span>نام تصویر : </span><span>'+ val.gallery_img_name + '</span></div>\
+                            <div><span>توضیحات تصویر : </span><span>'+ val.gallery_img_description + '</span></div>\
+                            <div><span>آدرس تصویر : </span><span>'+ val.gallery_img_url + '</span></div>\
+                            <div><span>آدرس تصویر بند انگشتی : </span><span>'+ val.gallery_img_thumbnail + '</span></div>\
+                            <img src="'+ val.gallery_img_thumbnail+'" />\
+                            <div>**********************************************************************************</div>';
+                    });
+                });
+                $('.MyGallery').append(MyRow);
+            }
+        });
+
+
+
+
+
+    </script>
+}
+
+
+

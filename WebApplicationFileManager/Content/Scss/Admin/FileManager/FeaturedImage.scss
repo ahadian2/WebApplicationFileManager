@@ -1,0 +1,328 @@
+@import '../Variable.scss';
+
+.featured-image {
+    margin-top:15px;
+
+    .featured {
+        .featured-header {
+            background: $Background-8;
+            padding: 10px 11px 10px;
+            border-radius: 5px 5px 0 0;
+            position: relative;
+
+            span {
+                color: $ColorText-5;
+            }
+
+            &:before {
+                display: inline-block;
+                font-family: bootstrap-icons !important;
+                font-style: normal;
+                font-weight: 400 !important;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1;
+                vertical-align: -0.125em;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                content: "\f226";
+                position: absolute;
+                left: 10px;
+                top: 15px;
+                font-size: 15px;
+                color: $ColorText-5;
+            }
+        }
+
+        .featured-body {
+            background-color: $Background-4;
+            padding: 5px;
+            position: relative;
+
+            img {
+                width: 100%;
+                cursor: pointer;
+            }
+
+            .remove-featured-image {
+                position: absolute;
+                color: $ColorText-2;
+                background: $Background-5;
+                top: 15px;
+                left: 15px;
+                cursor: pointer;
+                width: 35px;
+                height: 35px;
+                border-radius: 100%;
+                text-align: center;
+                line-height: 36px;
+                transition: background 0.5s;
+                display:none;
+
+                &:hover {
+                    background: $Background-1;
+                    transition: background 0.5s;
+                }
+            }
+        }
+    }
+}
+.featured-gallery {
+    padding: 10px 20px;
+
+    .featured {
+        .featured-header {
+            background: $Background-8;
+            padding: 10px 11px 10px;
+            border-radius: 5px 5px 0 0;
+            position: relative;
+
+            span {
+                color: $ColorText-5;
+            }
+
+            &:before {
+                display: inline-block;
+                font-family: bootstrap-icons !important;
+                font-style: normal;
+                font-weight: 400 !important;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1;
+                vertical-align: -0.125em;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                content: "\f226";
+                position: absolute;
+                left: 10px;
+                top: 15px;
+                font-size: 15px;
+                color: $ColorText-5;
+            }
+        }
+
+        .featured-body {
+            padding: 5px;
+            position: relative;
+            overflow: hidden;
+            background: $Background-4;
+
+            #sortable_gallery {
+                display: flex;
+                flex-flow: wrap;
+                gap: 10px;
+                justify-content: center;
+                padding: 10px 0;
+
+
+                .RowExternalGallery {
+                    padding: 0 15px;
+                    text-align: center;
+                    min-width: 100% !important;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+
+                    .Header-ExternalGallery {
+                        img {
+                            width: 100px;
+                            border-radius: 100%;
+                            display: block;
+                            margin: 10px auto;
+                        }
+
+                        .bi-trash3 {
+                            color: $ColorText-6;
+                        }
+
+                        .bi-arrows-move {
+                            color: $ColorText-5;
+                            cursor: move;
+                        }
+
+                        i {
+                            font-size: 15px;
+                            cursor: pointer;
+                        }
+                    }
+
+                    .Body-ExternalGallery {
+                        background: $Background-8;
+                        width: 100%;
+                        padding: 20px;
+                        margin-right: 15px;
+                        position: relative;
+
+                        input {
+                            display: block;
+                            margin: 2px auto 10px;
+                            width: 100%;
+                            background: #ffffff;
+                            color: $ColorText-5;
+                            border: solid 1px #c6c6c6;
+                            border-radius: 0;
+                            padding: 8px 10px;
+                            font-size: 13px;
+                            font-weight: 400;
+                        }
+
+                        input[type="button"] {
+                            background: red;
+                        }
+
+                        textarea {
+                            display: block;
+                            margin: 2px auto 10px;
+                            width: 100%;
+                            background: #ffffff;
+                            color: $ColorText-5;
+                            border: solid 1px #c6c6c6;
+                            border-radius: 0;
+                            padding: 13px 10px;
+                            font-size: 13px;
+                            font-weight: 400;
+                            min-height: 70px;
+                        }
+
+                        label {
+                            font-size: 10px;
+                            text-align: right;
+                            display: block;
+                            color: $ColorText-5;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.featured-carousel {
+    padding: 10px 20px;
+
+    .featured {
+        .featured-header {
+            background: $Background-8;
+            padding: 10px 11px 10px;
+            border-radius: 5px 5px 0 0;
+            position: relative;
+
+            span {
+                color: $ColorText-5;
+            }
+
+            &:before {
+                display: inline-block;
+                font-family: bootstrap-icons !important;
+                font-style: normal;
+                font-weight: 400 !important;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1;
+                vertical-align: -0.125em;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                content: "\f226";
+                position: absolute;
+                left: 10px;
+                top: 15px;
+                font-size: 15px;
+                color: $ColorText-5;
+            }
+        }
+
+        .featured-body {
+            padding: 5px;
+            position: relative;
+            overflow: hidden;
+            background: $Background-4;
+
+            #sortable_carousel {
+                display: flex;
+                flex-flow: wrap;
+                gap: 10px;
+                justify-content: center;
+                padding: 10px 0;
+
+
+                .RowExternalCarousel {
+                    padding: 0 15px;
+                    text-align: center;
+                    min-width: 100% !important;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+
+                    .Header-ExternalCarousel {
+                        img {
+                            width: 100px;
+                            border-radius: 100%;
+                            display: block;
+                            margin: 10px auto;
+                        }
+
+                        .bi-trash3 {
+                            color: $ColorText-6;
+                        }
+
+                        .bi-arrows-move {
+                            color: $ColorText-5;
+                            cursor: move;
+                        }
+
+                        i {
+                            font-size: 15px;
+                            cursor: pointer;
+                        }
+                    }
+
+                    .Body-ExternalCarousel {
+                        background: $Background-8;
+                        width: 100%;
+                        padding: 20px;
+                        margin-right: 15px;
+                        position: relative;
+
+                        input {
+                            display: block;
+                            margin: 2px auto 10px;
+                            width: 100%;
+                            background: #ffffff;
+                            color: $ColorText-5;
+                            border: solid 1px #c6c6c6;
+                            border-radius: 0;
+                            padding: 8px 10px;
+                            font-size: 13px;
+                            font-weight: 400;
+                        }
+
+                        input[type="button"] {
+                            background: red;
+                        }
+
+                        textarea {
+                            display: block;
+                            margin: 2px auto 10px;
+                            width: 100%;
+                            background: #ffffff;
+                            color: $ColorText-5;
+                            border: solid 1px #c6c6c6;
+                            border-radius: 0;
+                            padding: 13px 10px;
+                            font-size: 13px;
+                            font-weight: 400;
+                            min-height: 70px;
+                        }
+
+                        label {
+                            font-size: 10px;
+                            text-align: right;
+                            display: block;
+                            color: $ColorText-5;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

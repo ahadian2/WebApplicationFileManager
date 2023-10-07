@@ -1,0 +1,172 @@
+﻿@model WebApplicationFileManager.Models.Blog
+
+@{
+    ViewBag.Title = "Create";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.PostImage, new { htmlAttributes = new { @class = "form-control" } })
+
+    @*header*@
+    <div class="row MvcView-header">
+        <div class="col d-none d-sm-block">
+            <h2 class="MvcView-Title px-2">افزودن ... جدید</h2>
+        </div>
+        <div class="col-auto text-end">
+            @Html.ActionLink("بازگشت به لیست", "Index", null, new { @class = "btn-back" })
+        </div>
+    </div>
+    @*main*@
+<div class="row g-3 MvcView-Form">
+    <div class="col-9 mt-0">
+        <div class="MvcView-box">
+            <div class="MvcView-box-header">
+                <span>عنوان ... </span>
+                <i class="bi bi-pencil-fill"></i>
+            </div>
+            <div class="MvcView-box-body row">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.PostTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.PostTitle, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PostTitle, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <button type="button" class="btn-save" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="StartFileManager('ckeditor', true, true, true);">
+                        افزودن فایل چند رسانه ای
+                    </button>
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.PostContent, new { htmlAttributes = new { @class = "form-control editor" } })
+                        @Html.ValidationMessageFor(model => model.PostContent, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-6">
+                    @Html.LabelFor(model => model.PostGallery, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.PostGallery, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PostGallery, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    @Html.LabelFor(model => model.PostCarousel, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.PostCarousel, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PostCarousel, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-3 mt-0">
+        <div class="MvcView-box-l">
+            <div class="MvcView-box-l-header">
+                <span>عنوان ...</span>
+                <i class="bi bi-pencil-fill"></i>
+            </div>
+            <div class="MvcView-box-l-body">
+                <input type="submit" value="ذخیره اطلاعات" class="btn-save" />
+            </div>
+        </div>
+
+        @*featured-image*@
+        <div class="featured-image">
+            <div class="featured shadow">
+                <div class="featured-header">
+                    <span>تصویر شاخص</span>
+                </div>
+                <div class="featured-body">
+                    <img id="img-featured-image" src="~/Scripts/TIT-FileManager/Images/No-Image.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="StartFileManager('featured_image', true, true, false);" />
+                    <i class="bi bi-trash3 remove-featured-image" onclick="remove_featured_imag()"></i>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    @*External_Gallery*@
+    <div class="col-12 col-md-6 featured-gallery">
+        <div class="featured shadow">
+            <div class="featured-header">
+                <span>کالری</span>
+            </div>
+            <div class="featured-body">
+                <div class="repeater repeater-gallery">
+                    <div id="sortable_gallery" data-repeater-list="group_gallery">
+                    </div>
+                </div>
+                <button type="button" class="btn-add-gallery" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="StartFileManager('gallery', true, false, true);">
+                    <i class="bi bi-camera-fill"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    @*External_Carousel*@
+    <div class="col-12 col-md-6 featured-carousel">
+        <div class="featured shadow">
+            <div class="featured-header">
+                <span>اسلایدر</span>
+            </div>
+            <div class="featured-body">
+                <div class="repeater repeater-carousel">
+                    <div id="sortable_carousel" data-repeater-list="group_Carousel">
+                    </div>
+                </div>
+                <button type="button" class="btn-add-carousel" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="StartFileManager('carousel', true, false, true);">
+                    <i class="bi bi-camera-fill"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+}
+
+
+
+
+<div id="MyFileManager"></div>
+
+@section Style{
+    @*My Css Code*@
+}
+@section Script{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        @*for hover Right navbar slider *@
+        $(document).ready(function () {
+
+            //for featured-image
+            window.featured_image = true;
+            window.featured_image_Input_id = 'PostImage';
+
+            window.External_Gallery = true;
+            window.External_Gallery_Input_id = 'PostGallery';
+
+            window.External_Carousel = true;
+            window.External_Carousel_Input_id = 'PostCarousel';
+
+
+        $('#dashboard').addClass('active');
+        });
+    </script>
+    <script src="~/Scripts/CKEditor5/ckeditor.js"></script>
+    <script src="~/Scripts/CKEditor5/MyCk5.js"></script>
+    <script src="~/Scripts/TIT-FileManager/FileManager.js"></script>
+}
+
+
+
